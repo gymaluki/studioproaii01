@@ -23,7 +23,8 @@ export default async function handler(req, res) {
       }
     };
 
-    const model = 'gemini-2.0-flash-exp-image-generation';
+    // gemini-2.5-flash-image is the current correct model for image generation
+    const model = 'gemini-2.5-flash-image';
 
     const r = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
