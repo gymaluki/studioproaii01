@@ -23,8 +23,7 @@ export default async function handler(req, res) {
       }
     };
 
-    // Only this model supports image generation
-    const model = 'gemini-2.0-flash-preview-image-generation';
+    const model = 'gemini-2.0-flash-exp-image-generation';
 
     const r = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
@@ -46,7 +45,7 @@ export default async function handler(req, res) {
 
     if (!imgPart) {
       const reason = data.candidates?.[0]?.finishReason;
-      if (reason === 'SAFETY') return res.status(400).json({ error: 'Imagem bloqueada por filtros de segurança. Tente outro cenário.' });
+      if (reason === 'SAFETY') return res.status(400).json({ error: 'Imagem bloqueada por filtros de segurança.' });
       return res.status(400).json({ error: 'A IA não gerou imagem. Envie uma foto de rosto claro e tente novamente.' });
     }
 
